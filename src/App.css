@@ -1,6 +1,12 @@
+.App{
+    width: 1600px;
+}
+
+.wrap{
+    display: flex;
+    width: 1600px;
+}
 
 div{
-    width: 1200px;
     background-color: yellow;
-
    }

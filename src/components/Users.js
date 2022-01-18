@@ -1,5 +1,6 @@
 import {useEffect, useState} from "react";
 import User from "./User";
+import "./Users.css";
 export default function Users(){
 
     let [users,setUsers]=useState([]);
@@ -12,7 +13,7 @@ export default function Users(){
             });
     },[]);
     return(
-        <div>
+        <div className="users">
             <ul>
                 {
                     users.map(value => <li key={value.id}> <User  item={value}/> </li> )
