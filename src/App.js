@@ -1,11 +1,11 @@
 import './App.css';
-import Notebook from "./components/Notebook/Notebook";
-import Notebooks from "./components/Notebooks/Notebooks";
+import Users from "./components/Users";
+
 
 function App() {
     return (
         <div>
-            <Notebooks/>
+  <Users/>
 
         </div>
     );
