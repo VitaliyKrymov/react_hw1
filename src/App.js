@@ -5,29 +5,42 @@ const part = 2;
 const favoriteMovie = `Star ${part}`;
 let variable = 'Chanal 25'
 
-const fruits = ['banan', 'orange', 'apple'];
-fruits.push('mango');
-const [banana, orange, ...restFruits] = fruits;
+const fruites = ['banana', 'orange', 'apple'];
+fruites.push('mango');
+const [banana, orange, ...restFruites] = fruites;
 
-function sum(a, b) {              //function declaration
-    console.log(a, b);
-    console.log(a+ b);
-    return a + b;
-}
+// function sum(a, b) {              //function declaration
+//     console.log(a, b);
+//     console.log(a+ b);
+//     return a + b;
+// }
 const multiple = function (a,b)  {   //function expresion
   return a*b;
 }
 console.log(multiple(2, 20));
 
-const sum2 = (a, b) => a+b+1;        //arrow function
+const sum2 = (...rest) => {
+    let sum=0;
+    for (let i=0;i<rest.length;i++){
+        sum +=rest[i]
+    }
+    return sum
+};        //arrow function
+console.log('Sum: ',sum2(2,3,4,5,6))
 
-const myFruits = (fruites) => {
+const myFruits = (fruites= []) => {
     let html = [];
 
-    for (let i = 1; i < fruits.length; i++) {
-        console.log(i,fruits[i]);
-        html.push(<p>{i}-{fruits[i]}</p>);//пушим параграфи в масив html
-    }
+    // try {
+        for (let i = 0; i < fruites.length; i++) {
+            console.log(i, fruites[i]);
+            html.push(<p>{i}-{fruites[i]}</p>);//пушим параграфи в масив html
+        }
+    // } catch (e){
+    //     console.error('New error:',e);
+    //     html.push(<h1>No fruits</h1>)
+    // }
+
     return html;
 }
 
@@ -36,14 +49,13 @@ const user = {
     lastName: 'Rudniy',
     age: 27,
     status: false,
-    fruits,
+    fruites,
     gender: 'male',
     bestFriend: {
         name: "Nataly",
         age: 43
     }
 };
-
 
 const user2 = {
     ...user,
@@ -58,10 +70,17 @@ user2.bestFriend.name = 'Natasha'
 console.log(user);
 console.log(user2);
 
-const {name: nameUser, age, lastName, status, city = "Kyiv", ...rest} = user
+const {name: nameUser, age, lastName, status, city = "Kyiv", ...rest} = user;
 
-function User({name, lastName,gender, ...rest}) {
-return (name && <h1>{name}</h1>)||(<h2>{"N0 name"}</h2>)//якщо є нейм тоді виведемо нейм інакше"N0 name"
+const iLikeTheseFruits=myFruits(restFruites);
+
+const User = ({name="Guest"}) => (<h1>{name}</h1> || <p>No Data</p>);
+
+
+
+// function User({name, lastName,gender, ...rest}) {
+// return (name && <h1>{name}</h1>)||(<h2>{"N0 name"}</h2>)//якщо є нейм тоді виведемо нейм інакше"N0 name"
+
     // if (name && lastName) {
 //     if (name ||lastName) {
 //         const salut=`Hello,${gender ==="male"?'Mr':'Ms'} ${name}`;
@@ -83,18 +102,22 @@ return (name && <h1>{name}</h1>)||(<h2>{"N0 name"}</h2>)//якщо є нейм �
     //     return <h2>No Data</h2>;
     // }
     // return name ?"true": 'false'// ternarka
-}
-const iLikeTheseFruits=myFruits(rest.fruits)
+// }
+
 
 function App() {
     return (
         <div className="App">
-            {iLikeTheseFruits}
-            {sum(5,10)}
+
+            <User name={user.name}/>
+            {myFruits()}
+            {/*{iLikeTheseFruits}*/}
+            {/*{sum(5,10)}*/}
             <br/>
-            {multiple(3,3)}
+            {/*{multiple(3,3)}*/}
             <br/>
-            {sum2(50,1000)}
+            {/*{sum2(5,50,500,1000)}*/}
+
             {/*{html}*/}
             {/*<h1>{nameUser}-{lastName} age:{age} {city}</h1>*/}
             {/*{JSON.stringify(restFruits)}*/}
