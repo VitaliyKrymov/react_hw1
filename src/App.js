@@ -45,48 +45,49 @@ class App extends Component {
     constructor() {
         super();
         this.state = {
-            firstName: '',
-            email: ''
+            id: '',
+            user: {}
         };
-        // this.onClickHandler=this.onClickHandler.bind(this)//arrow function make it useless
+
     }
 
-    // onClickHandler=()=>{
-    //     console.log('onClick',this);
-    //     this.setState({
-    //         firstName:'New User Name'
-    //     })
-    // }
-
-    onSubmite = (e) => {
+    onSubmit = (e) => {
         e.preventDefault();
-        console.log(this.state);
-       debugger
+        fetch(`https://swapi.dev/api/people/${this.state.id}`).then((responce) => {
+            responce.json()
+                .then((user) => {
+                    this.setState({
+                        user
+                    })
+                })
+                .catch((error)=>{   // with fatch .catch((error) don't work!!!
+                    console.log(error)
+                })
+        })
+
     }
     onChange = (e) => {
         const {value, name} = e.target;
-
         this.setState({
             [name]: value
         });
     }
 
     render() {
-        console.log(this.state);
-        return <div className="App">
-            Hello ,{this.state.firstName}!
-            <form onSubmit={this.onSubmite}>
-                <input value={this.state.firstName} onChange={this.onChange} name='firstName' type='text'
-                       placeholder='Put your name'/>
-                <input value={this.state.email} onChange={this.onChange} name='email' type='text'
-                       placeholder='Put your email'/>
-                <button>Submite</button>
+        const {id, user} = this.state;
 
+        return <div className="App">
+            Hello ,{id}
+            <form onSubmit={this.onSubmit}>
+                <input value={id} onChange={this.onChange} name='id' type='text'
+                       placeholder='Put your id'/>
+
+                <button>Submite</button>
             </form>
+
+            {JSON.stringify(user)}
+
         </div>
     }
-
-
 }
-
-export default App;
+            export default App;
