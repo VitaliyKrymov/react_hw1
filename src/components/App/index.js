@@ -17,7 +17,6 @@ constructor() {
               age={this.state.age}
               date={this.state.date}/>
         <User name='Nataly' age='43'/>
-
     </div>
     }
 
