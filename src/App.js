@@ -1,12 +1,19 @@
-
-import './App.css';
+import {Routes,Route,Link} from "react-router-dom";
 
 function App() {
-  return (
-    <div className="App">
+    return (
+        <div>
+            <ul>
+                <li> <Link to={'/'}>Home</Link> </li>
+                <li> <Link to={'/layout'}>Layout</Link> </li>
+            </ul>
 
-    </div>
-  );
+            <Routes>
+
+            </Routes>
+
+        </div>
+    );
 }
 
 export default App;
