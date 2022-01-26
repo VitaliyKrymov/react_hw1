@@ -1,28 +1,68 @@
 import {Component} from "react";
 
-import User from "../User";
+import Balance from "../Balance";
+
 
 class App extends Component {
-constructor() {
-    super();
-    this.state={
-        name: 'Vitaliy',
-        date: Date.now(),
-        age: 48
+    constructor() {
+        super();
+        this.state = {
+            balance: 0
+        }
+        this.onIncrise = this.onIncrise.bind(this);
+        console.log("constructor")
     }
-}
+
+    componentDidMount() {
+        const balance =JSON.parse(window.localStorage.getItem('balance'));
+
+        this.setState({
+            balance
+        })
+        console.log("componentDidMount")
+    }
+
+    componentWillUnmount() {
+        console.log("componentWillUnmount")
+        window.localStorage.setItem('balance',JSON.stringify(this.state.balance));
+    }
+    // shouldComponentUpdate(nextProps,nextState) {
+    // console.log("shouldComponentUpdate");
+    //
+    // console.log(this.state);
+
+
+    // // debugger
+    // return nextState.balance<5;// return boolean
+    // }
+
+    onIncrise () {
+        this.setState({
+            balance: this.state.balance + 1
+        })
+    }
+//Arrow function automatic add context when it create and
+    //this.onIncrise = this.onIncrise.bind(this); not use
+    onDecrise= () =>{
+        this.setState({
+            balance: this.state.balance - 1
+        })
+    }
+
+
     render() {
-        return <div>
-        <User name={this.state.name}
-              age={this.state.age}
-              date={this.state.date}/>
-        <User name='Nataly' age='43'/>
-    </div>
+        console.log("render")
+        return (
+            <div>
+                <Balance balance={this.state.balance}/>
+                 <button onClick={(this.onIncrise)}
+                 >Додати 1</button>
+
+                <button onClick={(this.onDecrise)}
+                 >Відняти 1</button>
+            </div>
+        )
     }
-
-
-
-
 }
 
 export default App;
