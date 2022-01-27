@@ -14,6 +14,7 @@ class App extends Component {
     }
 
     componentDidMount() {
+        window.localStorage.setItem('balance',JSON.stringify(this.state.balance));
         const balance =JSON.parse(window.localStorage.getItem('balance'));
 
         this.setState({
@@ -23,30 +24,26 @@ class App extends Component {
     }
 
     componentWillUnmount() {
-        console.log("componentWillUnmount")
+        console.log("componentWillUnmount");
         window.localStorage.setItem('balance',JSON.stringify(this.state.balance));
+
     }
-    // shouldComponentUpdate(nextProps,nextState) {
-    // console.log("shouldComponentUpdate");
-    //
-    // console.log(this.state);
-
-
-    // // debugger
-    // return nextState.balance<5;// return boolean
-    // }
 
     onIncrise () {
         this.setState({
-            balance: this.state.balance + 1
+            balance: this.state.balance + 1,
         })
+        console.log(JSON.stringify(this.state.balance+1))
+        window.localStorage.setItem('balance',JSON.stringify(this.state.balance+1));
     }
-//Arrow function automatic add context when it create and
-    //this.onIncrise = this.onIncrise.bind(this); not use
+                                    //Arrow function automatic add context when it create and
+                                    //this.onIncrise = this.onIncrise.bind(this); not use
     onDecrise= () =>{
         this.setState({
             balance: this.state.balance - 1
         })
+        console.log(JSON.stringify(this.state.balance-1))
+        window.localStorage.setItem('balance',JSON.stringify(this.state.balance-1));
     }
 
 
@@ -60,6 +57,7 @@ class App extends Component {
 
                 <button onClick={(this.onDecrise)}
                  >Відняти 1</button>
+
             </div>
         )
     }
