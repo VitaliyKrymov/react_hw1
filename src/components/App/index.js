@@ -33,7 +33,7 @@ class App extends Component {
         this.setState({
             balance: this.state.balance + 1,
         })
-        console.log(JSON.stringify(this.state.balance+1))
+        // console.log(JSON.stringify(this.state.balance+1))
         window.localStorage.setItem('balance',JSON.stringify(this.state.balance+1));
     }
                                     //Arrow function automatic add context when it create and
@@ -42,10 +42,10 @@ class App extends Component {
         this.setState({
             balance: this.state.balance - 1
         })
-        console.log(JSON.stringify(this.state.balance-1))
-        window.localStorage.setItem('balance',JSON.stringify(this.state.balance-1));
+        // console.log(JSON.stringify(this.state.balance-1))
+        // window.localStorage.setItem('balance',JSON.stringify(this.state.balance-1));
+        window.localStorage.setItem('balance',this.state.balance-1);
     }
-
 
     render() {
         console.log("render")
