@@ -3,7 +3,6 @@ import {Component} from "react";
 import Balance from "../Balance";
 import Transactions from "../Transactions";
 
-
 let id = 0;
 
 class App extends Component {
@@ -76,7 +75,6 @@ class App extends Component {
                 <button onClick={this.onIncrease}> Додати1</button>;
                 <button onClick={this.onDecrease}> Відняти1 </button>
                 <hr/>
-
                <Transactions transactions={this.state.transactions}/>
 
             </div>
