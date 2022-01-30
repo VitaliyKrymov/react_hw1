@@ -1,8 +1,8 @@
 import {Component} from "react";
 
 import Balance from "../Balance";
-// import TransactionsArray from "../TransactionsArray";
-// import Form from "../Form";
+import Transactions from "../Transactions";
+
 
 let id = 0;
 
@@ -13,7 +13,7 @@ class App extends Component {
             balance: 5,
             transactions: []
         }
-       // this.onIncrise = this.onIncrise.bind(this);
+        // this.onIncrise = this.onIncrise.bind(this);
         console.log("constructor");
     }
 
@@ -38,7 +38,7 @@ class App extends Component {
     //     // return nextState.balance < 0   //component  render than  balance <0
     // }
 
-    onIncrease=()=> {
+    onIncrease = () => {
         this.setState((state) => ({
             balance: state.balance + 1,
             transactions: [{
@@ -73,14 +73,12 @@ class App extends Component {
         return (
             <div>
                 <Balance balance={this.state.balance}/>
-
-               <button onClick={this.onIncrease}> Додати1 </button>;
-               <button onClick={this.onDecrease}> Відняти1 </button>
-
-                {/*<Form/>*/}
+                <button onClick={this.onIncrease}> Додати1</button>;
+                <button onClick={this.onDecrease}> Відняти1 </button>
                 <hr/>
-                {this.state.transactions.length === 0 ?'Ще немає транзакцій': JSON.stringify(this.setState.transactions) }
-                {/*<TransactionsArray transactions={this.state.transactions}/>*/}
+
+               <Transactions transactions={this.state.transactions}/>
+
             </div>
         )
     }

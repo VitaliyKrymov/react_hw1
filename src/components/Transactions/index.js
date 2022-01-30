@@ -1,11 +1,11 @@
-const Transactions=(props)=>(
+import Transaction from "../Transaction";
 
-        <div>
-            label:{props.transactions.lable}
-            <p>Value:{props.transactions.value}</p>
-            <br/>
-        </div>
-
+const Transactions = (props)=>(
+    <div>
+        {
+            props.transactions.map((transaction) => <Transaction key = {transaction.id} transaction={transaction}/>)
+        }
+    </div>
 )
 
 export default Transactions;
