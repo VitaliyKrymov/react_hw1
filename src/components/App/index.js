@@ -21,10 +21,8 @@ class App extends Component {
         window.localStorage.setItem('balance', JSON.stringify(this.state.balance));
         const balance = JSON.parse(window.localStorage.getItem('balance'));
 
-        this.setState({
-            balance
-        })
-        console.log("componentDidMount")
+        this.setState({balance})
+        // console.log("componentDidMount")
     }
 
     componentWillUnmount() {
@@ -64,10 +62,10 @@ class App extends Component {
     }
 
     render() {
-        console.log("render")
+        // console.log("render")
         return (
             <div>
-                {/*<Balance balance={this.state.balance}/>*/}
+                <Balance balance={this.state.balance}/>
                 {/*<button onClick={(this.onIncrise)}*/}
                 {/*>Додати 1*/}
                 {/*</button>*/}

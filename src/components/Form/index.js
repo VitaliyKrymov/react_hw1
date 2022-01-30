@@ -4,17 +4,31 @@ class Form extends Component {
     constructor() {
         super();
     }
-    onSubmit=(e)=>{
-        e.preventDefault()
+
+    onSubmit = (e) => {
+        e.preventDefault();
+        console.log(this.state);
+    };
+
+    onChange = (e) => {
+        const {value} = e.target;
+        this.setState({
+            value
+        })
     };
 
     render() {
-        return(
+        return (
             <form onSubmit={this.onSubmit}>
-                <input name='balance'type='number' placeholder='Suma'/>
-                <button> Save </button>
+                <input name='balance'
+                       type='number'
+                       value={this.state.value}
+                       placeholder='Suma'
+                       onChange={this.onChange}/>
+                <button> Save</button>
             </form>
         )
     }
 }
+
 export default Form;
