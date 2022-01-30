@@ -1,8 +1,8 @@
 import {Component} from "react";
 
 import Balance from "../Balance";
-import TransactionsArray from "../TransactionsArray";
-import Form from "../Form";
+// import TransactionsArray from "../TransactionsArray";
+// import Form from "../Form";
 
 let id = 0;
 
@@ -13,16 +13,15 @@ class App extends Component {
             balance: 5,
             transactions: []
         }
-        this.onIncrise = this.onIncrise.bind(this);
-        console.log("constructor")
+       // this.onIncrise = this.onIncrise.bind(this);
+        console.log("constructor");
     }
 
     componentDidMount() {
         window.localStorage.setItem('balance', JSON.stringify(this.state.balance));
         const balance = JSON.parse(window.localStorage.getItem('balance'));
-
-        this.setState({balance})
-        // console.log("componentDidMount")
+        this.setState({balance});
+        console.log("componentDidMount");
     }
 
     componentWillUnmount() {
@@ -31,7 +30,15 @@ class App extends Component {
 
     }
 
-    onIncrise() {
+    // shouldComponentUpdate(nextProps, nextState, nextContext) {
+    //     console.log('shouldComponentUpdate');
+    //     console.log(this.state);
+    //
+    //     // return false    //component will not render
+    //     // return nextState.balance < 0   //component  render than  balance <0
+    // }
+
+    onIncrease=()=> {
         this.setState((state) => ({
             balance: state.balance + 1,
             transactions: [{
@@ -40,14 +47,14 @@ class App extends Component {
                 id: ++id
             }, ...state.transactions]
         }))
-
         // console.log(JSON.stringify(this.state.balance+1))
         window.localStorage.setItem('balance', JSON.stringify(this.state.balance + 1));
     }
 
     //Arrow function automatic add context when it create and
     //this.onIncrise = this.onIncrise.bind(this); not use
-    onDecrise = () => {
+
+    onDecrease = () => {
         this.setState((state) => ({
             balance: state.balance - 1,
             transactions: [{
@@ -62,25 +69,18 @@ class App extends Component {
     }
 
     render() {
-        // console.log("render")
+        console.log("render")
         return (
             <div>
                 <Balance balance={this.state.balance}/>
-                {/*<button onClick={(this.onIncrise)}*/}
-                {/*>Додати 1*/}
-                {/*</button>*/}
 
-                {/*<button onClick={(this.onDecrise)}*/}
-                {/*>Відняти 1*/}
-                {/*</button>*/}
+               <button onClick={this.onIncrease}> Додати1 </button>;
+               <button onClick={this.onDecrease}> Відняти1 </button>
 
-                <Form/>
+                {/*<Form/>*/}
                 <hr/>
-                {/*замінимо цей вивід виводом списків*/}
-                {/*{this.state.transactions.length === 0*/}
-                {/*    ? 'Ще нема транзакцій'*/}
-                {/*    : JSON.stringify(this.state.transactions)}*/}
-                <TransactionsArray transactions={this.state.transactions}/>
+                {this.state.transactions.length === 0 ?'Ще немає транзакцій': JSON.stringify(this.setState.transactions) }
+                {/*<TransactionsArray transactions={this.state.transactions}/>*/}
             </div>
         )
     }

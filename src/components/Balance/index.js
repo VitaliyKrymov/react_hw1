@@ -1,10 +1,11 @@
 import react from 'react';
 
-const Balance= ({balance}) => {
+const Balance= ({balance,children}) => {
     return (
         <div>
             {/*Balance: {!balance===0 ? 'Повний нуль': null}*/}
             {/*Balance: {!balance && 'Повний нуль'}*/}
+
             {/*analog*/}
             {/*перевірка декількох умов цей варіант важко сприймається */}
 
