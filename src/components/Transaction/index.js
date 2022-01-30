@@ -1,3 +1,5 @@
+import transactions from "../Transactions";
+
 const Transaction = (props) => (
     <div>
         Label:{props.transaction.label}
