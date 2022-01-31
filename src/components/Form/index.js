@@ -26,12 +26,12 @@ class Form extends Component {
     render() {
         return (
             <form onSubmit={this.onSubmit}>
-                <input name='balance'
+                <input name='Баланс'
                        type='number'
+                       placeholder='Сума'
                        value={this.state.value}
-                       placeholder='Suma'
                        onChange={this.onChange}/>
-                <button> Save</button>
+                <button> Зберегти</button>
             </form>
         )
     }

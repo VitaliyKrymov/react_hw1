@@ -21,7 +21,7 @@ class App extends Component {
     onChange = (value) => {
         this.setState((state) => ({
             balance: state.balance + Number(value),
-            transactions: [{value, label: 'change', ...state.transactions}]
+            transactions: [{value, label: 'change'}, ...state.transactions]
         }))
     }
 

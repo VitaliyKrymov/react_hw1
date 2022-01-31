@@ -1,9 +1,9 @@
 import transactions from "../Transactions";
 
-const Transaction = (props) => (
-    <div>
-        Label:{props.transaction.label}
-        <p>Value:{props.transaction.value}</p>
+const Transaction = ({transaction}) => (
+    <div key={transaction.id}>
+        Label:{transaction.label}
+        <p>Value:{transaction.value}</p>
         <br/>
     </div>
 );
