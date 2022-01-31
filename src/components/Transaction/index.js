@@ -1,7 +1,7 @@
 import transactions from "../Transactions";
 
 const Transaction = ({transaction}) => (
-    <div key={transaction.id}>
+    <div >
         Label:{transaction.label}
         <p>Value:{transaction.value}</p>
         <br/>
