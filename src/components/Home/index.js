@@ -4,11 +4,11 @@ import Balance from "../Balance";
 import Transactions from "../Transactions";
 import Form from "../Form";
 
-import {Wrap, GlobalStyle} from "./styles";
+import {Wrap} from "./styles";
 
 let id = 0;
 
-class App extends Component {
+class Home extends Component {
     constructor() {
         super();
         this.state = {
@@ -35,7 +35,6 @@ class App extends Component {
     render() {
         return (
             <Wrap>
-                <GlobalStyle/>
                 <Balance balance={this.state.balance}/>
                 <Form onChange={this.onChange}/>
                <hr/>
@@ -45,4 +44,4 @@ class App extends Component {
     }
 }
 
-export default App;
+export default Home;
