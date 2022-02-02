@@ -19,13 +19,10 @@ const App = () => {
                         <Link to="/about">About</Link> | {" "}
                         <Link to="/statistics">Statistics</Link>
                     </nav>
-
-
 <Routes>
     <Route path={'/'} element ={<Home/>}/>
     <Route path={'/about'} element ={<About/>}/>
     <Route path={'/statistics'} element ={<Statistics/>}/>
-    <Route path={'/'} element ={<Home/>}/>
 </Routes>
                 </Wrap>
         )
