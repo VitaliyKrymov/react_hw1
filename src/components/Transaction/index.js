@@ -1,12 +1,12 @@
-import transactions from "../Transactions";
-import PropTypes from "prop-types";
-import {Wrapper} from "./styles";
 
-const Transaction = ({transaction : {value,label}}) => (
+import PropTypes from "prop-types";
+import {Wrapper,TransactionDate,Value,Comment} from "./styles";
+
+const Transaction = ({transaction : {value,date,comment}}) => (
     <Wrapper value={value}>
-        Label:{label}
-        <p>Value:{value}</p>
-        <br/>
+        <TransactionDate>{date}</TransactionDate>
+        <Value>Summa: {' '}{value.toFixed(2)}</Value>
+        <Comment>{comment}</Comment>
     </Wrapper>
 );
 

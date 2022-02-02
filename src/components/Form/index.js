@@ -9,7 +9,7 @@ class Form extends Component {
 
         this.state = {
             value: '',
-            date: '',
+            date: new Date().toISOString().substring(0,10),
             comment: ''
         }
     }
@@ -17,7 +17,7 @@ class Form extends Component {
     onSubmit = (e) => {
         e.preventDefault();
 
-        this.props.onChange(this.state.value)
+        this.props.onChange(this.state)
         this.setState({
             value: '',
             date: '',
@@ -29,7 +29,8 @@ class Form extends Component {
         const {value, name} = e.target;
 
         this.setState({
-            [name]: name === balance ? +value : value
+            [name]: value
+            // [name]: name === balance ? +value : value
         })
     };
 

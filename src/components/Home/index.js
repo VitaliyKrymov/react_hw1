@@ -21,11 +21,11 @@ class Home extends Component {
         console.log("constructor");
     }
 
-    onChange = (value) => {
+    onChange = ({value,date,comment}) => {
         this.setState((state) => ({
             balance: state.balance + Number(value),
             transactions: [{
-                value,
+                value : + value,
                 label: 'change',
                 id: ++id
             },
