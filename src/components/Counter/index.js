@@ -22,7 +22,6 @@ const Counter = () => {
           <input name='step'
                  value={step}
                  onChange={(e)=>setStep(+e.target.value)}
-
               />console.log(e);
 
       </div>
