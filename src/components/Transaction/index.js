@@ -4,9 +4,11 @@ import {Wrapper,TransactionDate,Value,Comment} from "./styles";
 
 const Transaction = ({transaction : {value,date,comment}}) => (
     <Wrapper value={value}>
+
         <TransactionDate>{date}</TransactionDate>
-        <Value>Summa: {' '}{value.toFixed(2)}</Value>
+        <Value>{value.toFixed(2)}</Value>
         <Comment>{comment}</Comment>
+
     </Wrapper>
 );
 

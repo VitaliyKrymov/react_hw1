@@ -20,7 +20,6 @@ class Form extends Component {
         this.props.onChange(this.state)
         this.setState({
             value: '',
-            date: '',
             comment: ''
         })
     };

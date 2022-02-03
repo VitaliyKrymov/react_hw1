@@ -1,3 +1,4 @@
+import React from "react";
 import {BrowserRouter,Routes,Route,Link} from "react-router-dom";
 
 import About from "../About";
@@ -6,7 +7,18 @@ import Statistics from "../Statistics";
 
 import {Wrap, GlobalStyle} from "./styles";
 
-const App = () => {
+import { open} from "../Utils/index.db";
+
+class App extends React.Component {
+    constructor(props) {
+        super(props);
+    }
+    componentDidMount() {
+        debugger
+        open();
+    }
+
+    render() {
         return (
                 <Wrap>
                     <GlobalStyle/>
@@ -26,6 +38,7 @@ const App = () => {
 </Routes>
                 </Wrap>
         )
+}
 }
 
 export default App;

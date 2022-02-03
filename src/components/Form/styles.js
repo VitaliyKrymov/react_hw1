@@ -6,15 +6,15 @@ export const Wrapper = styled.div`
     border-radius: 3px;
     padding: 5px;
     margin-bottom: 10px;
+    max-width: 420px;
 `;
-// Wrapper.displayName= 'TransactionWrapper'
 Wrapper.displayName= 'Wrapper'
 
 export const Input = styled.input`
   border: 1px solid #dbdbdb;
   border-radius: 3px;
-  padding:0 5px;
-  min-width: 80px;
+  padding: 0 5px;
+  min-width: 180px;
   margin-bottom: 10px;
   margin-right: 10px;
   height: 40px;
@@ -25,6 +25,7 @@ Input.displayName = 'Input';
 export const Row = styled.div`
     display: flex;
   align-items: center;
+  justify-content: space-around;
 `
 Row.displayName = 'Row';
 
@@ -32,16 +33,16 @@ export const Button = styled.button`
   border: 1px solid #dbdbdb;
   height: 40px;
   border-radius: 3px;
-  padding:0 21px;
+  padding: 0 5px;
   box-sizing: border-box;
-  background-color: #e0e0e0;
-  color: rgba(0,0,0,0.87);
+  background-color: rgba(108, 211, 168, 0.61);
+  color: rgba(0, 0, 0, 0.87);
   font-size: 18px;
   margin-right: 10px;
   outline: none;
-  width: 118px;
-  
-  &:hover{
+  min-width: 205px;
+
+  &:hover {
     cursor: pointer;
   }
 `
@@ -53,10 +54,9 @@ export const Comment = styled.textarea`
   box-sizing: border-box;
   padding: 5px;
   border-radius: 3px;
-  width: 138px;
   margin: 0;
   height: 40px;
-  min-width: 140px;
+  min-width: 200px;
   border: 1px solid #dbdbdb;
   outline: none;
 `;

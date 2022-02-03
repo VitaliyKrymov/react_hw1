@@ -10,10 +10,13 @@ export const Wrapper= styled.div`
   align-items: center;
   justify-content: space-between;
 `;
-Wrapper.displayName='TransactionWrapper'
+Wrapper.displayName='Wrapper'
 
-export const TransactionDate = 'TransactionDate';
+export const TransactionDate = styled.div`
+'TransactionDate';
+flex-grow: 1;`
 
+TransactionDate.displayName='TransactionDate'
 export const Value = styled.div`
   flex-grow: 1;
 `;
