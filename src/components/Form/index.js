@@ -1,40 +1,39 @@
-import {Component} from "react";
+import {useState} from "react";
 import PropTypes from 'prop-types'
 
-class Form extends Component {
-    constructor() {
-        super();
+const Form =()=> {
+    const [form,setForm] = useState({
+        value:'',
+        date: new Date().toISOString().substring(0,10),
+        comment:''
+    });
 
-        this.state={
-            value:''
-        }
-    }
-
-    onSubmit = (e) => {
+    const    onSubmit = (e) => {
         e.preventDefault();
-
         this.props.onChange(this.state.value)
         this.setState({
             value:''
         })
     };
 
-    onChange = (e) => {
-        const {value} = e.target;
+   const onChange = (e) => {
+        const {value, name} = e.target;
 
-        this.setState({
-            value: +value
+        setForm({
+            ...form,
+            [name]: value
         })
     };
 
     render() {
         return (
-            <form onSubmit={this.onSubmit}>
+
+            <form onSubmit={onSubmit}>
                 <input name='Баланс'
                        type='number'
                        placeholder='Сума'
-                       value={this.state.value}
-                       onChange={this.onChange}/>
+                       value={form.value}
+                       onChange={onChange}/>
                 <button> Зберегти</button>
             </form>
         )
