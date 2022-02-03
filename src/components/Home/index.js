@@ -7,9 +7,8 @@ import ErrorBoundary from "../ErrorBoundary"
 
 import {Wrap} from "./styles";
 
-import {getItems} from "../Utils/index.db";
+import {getItems, addItem} from "../Utils/index.db";
 
-let id = 0;
 
 class Home extends Component {
     constructor() {
@@ -24,25 +23,30 @@ class Home extends Component {
     }
 
     componentDidMount() {
-        debugger
-        getItems().then((date)=>{
-            debugger
+        getItems().then((transactions)=>{
+            this.setState({
+                transactions
+            })
         }).catch((e)=>{
             debugger
         })
     }
 
     onChange = ({value,date,comment}) => {
+        const transaction = {
+            value : + value,
+            comment,
+            date,
+            id: Date.now()
+        }
         this.setState((state) => ({
             balance: state.balance + Number(value),
-            transactions: [{
-                value : + value,
-                comment,
-                date,
-                id: ++id
-            },
+            transactions: [
+               transaction,
                 ...state.transactions]
-        }))
+        }));
+
+        addItem(transaction)
     }
 
     render() {

@@ -7,6 +7,7 @@ export const Wrapper = styled.div`
     padding: 5px;
     margin-bottom: 10px;
     max-width: 420px;
+    min-width: 420px;
 `;
 Wrapper.displayName= 'Wrapper'
 
