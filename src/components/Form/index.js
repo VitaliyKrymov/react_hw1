@@ -1,4 +1,4 @@
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import PropTypes from 'prop-types'
 
 import {Wrapper,Button, Comment, Input, Row} from "./styles";
@@ -29,6 +29,9 @@ const Form =(props)=> {
            [name]: value
        })
     }
+
+
+
         return (
             <Wrapper>
                 <form onSubmit={onSubmit}>

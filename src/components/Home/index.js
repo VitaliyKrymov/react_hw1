@@ -1,4 +1,4 @@
-import {Component} from "react";
+import {Component, useEffect, useState} from "react";
 
 import Balance from "../Balance";
 import Transactions from "../Transactions";
@@ -10,58 +10,48 @@ import {Wrap} from "./styles";
 import {getItems, addItem} from "../Utils/index.db";
 
 
-class Home extends Component {
-    constructor() {
-        super();
-        this.state = {
-            balance: 0,
-            transactions: []
-        }
+const Home =()=> {
+   const [balance,setBalance]= useState(0);
+   const [transactions,setTransactions]= useState([]);
 
-        this.onChange = this.onChange.bind(this);
-        console.log("constructor");
-    }
+useEffect(()=>{
+    getItems().then((items)=>{
+        setTransactions(items)
+    }).catch((e)=>{
+        debugger
+})
+},[setTransactions])
 
-    componentDidMount() {
-        getItems().then((transactions)=>{
-            this.setState({
-                transactions
-            })
-        }).catch((e)=>{
-            debugger
-        })
-    }
 
-    onChange = ({value,date,comment}) => {
+
+  const  onChange = ({value,date,comment}) => {
         const transaction = {
             value : + value,
             comment,
             date,
             id: Date.now()
         }
-        this.setState((state) => ({
-            balance: state.balance + Number(value),
-            transactions: [
-               transaction,
-                ...state.transactions]
-        }));
+      setTransactions([
+              transaction,
+          ...transactions])
+
+      setBalance(balance+ Number(value));
 
         addItem(transaction)
     }
 
-    render() {
         return (
             <ErrorBoundary>
                 <Wrap>
-                    <Balance balance={this.state.balance}/>
-                    <Form onChange={this.onChange}/>
+                    <Balance balance={balance}/>
+                    <Form onChange={onChange}/>
                     <hr/>
-                    <Transactions transactions={this.state.transactions}/>
+                    <Transactions transactions={transactions}/>
                 </Wrap>
             </ErrorBoundary>
 
         )
     }
-}
+
 
 export default Home;
