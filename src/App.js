@@ -1,30 +1,41 @@
 import React, {useState} from "react";
+import Counter from "./components/Counter/Counter";
+import ClassCounter from "./components/Counter/ClassCounter";
 
 function App() {
-    const [likes, setLikes] = useState(0);
+
     const [value, setValue] = useState('');
+    const [choice, setChoice] = useState('');
 
-    function increment() {
-        setLikes(likes + 1);
-    }
-
-    function decrement() {
-        setLikes(likes - 1);
-    }
 
     return (
         <div className="App">
-            <h1> Value: {value} </h1>
-            <h2> Likes:{likes} </h2>
-
-            <button onClick={increment}>Increment</button>
-            <button onClick={decrement}>Decrement</button>
+            <h1> Input value: {value} </h1>
             <input
-                title='title'
                 type="text"
-                tabIndex='1'
-                onChange={event => setValue(event.target.value)}>
-            </input>
+                onChange={event => setValue(event.target.value)}
+            />
+
+            <Counter/>
+
+            <ClassCounter/>
+
+            <br/>
+            <h2> Вибір: {choice} </h2>
+            <form>
+                <p><input list="cocktail"
+                          onChange={event => setChoice(event.target.value)}/>
+                    Вибери зі списку
+                </p>
+                <datalist id="cocktail">
+                    <option>Аперитивы</option>
+                    <option>Горячие</option>
+                    <option>Десертные</option>
+                    <option>Диджестивы</option>
+                    <option>Молочные</option>
+                    <option>Слоистые</option>
+                </datalist>
+            </form>
         </div>
     );
 }
