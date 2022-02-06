@@ -12,17 +12,22 @@ function App() {
         {id: 3, title: "JavaScript 3", body: 'Description'}
     ]);
 
-    const createPost=(newPost)=>{
-        setPosts([...posts,newPost])
+    const createPost = (newPost) => {
+        setPosts([...posts, newPost])
     }
-
+    const removePost = (post) => {
+        setPosts(posts.filter(p => p.id !== post.id))
+    }
 
     return (
         <div className="App">
-           <PostForm create={createPost}/>
+            <PostForm create={createPost}/>
 
-            <PostList posts={posts} title='JS posts 1'/>
-
+            {posts.length !== 0
+                ? <PostList remove={removePost} posts={posts} title='JS posts 1'/>
+                : <h2 style={{textAlign: 'center'}}>
+                    'Посты не найдены'
+                </h2>}
         </div>
     );
 }
