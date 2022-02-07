@@ -8,10 +8,11 @@ import MySelect from "./components/UI/select/MySelect";
 
 function App() {
     const [posts, setPosts] = useState([
-        {id: 1, title: "JavaScript", body: 'Description'},
-        {id: 2, title: "JavaScript 2", body: 'Description'},
-        {id: 3, title: "JavaScript 3", body: 'Description'}
+        {id: 1, title: "A JavaScript", body: 'ZZ Description'},
+        {id: 2, title: "G JavaScript 2", body: 'HH Description'},
+        {id: 3, title: "B JavaScript 3", body: 'AA Description'}
     ]);
+
     const [selectedSort, setSelectedSort] = useState('');
     const createPost = (newPost) => {
         setPosts([...posts, newPost])
@@ -21,7 +22,7 @@ function App() {
     }
     const sortPosts = (sort) => {
       setSelectedSort(sort);
-     //todo 1:10:51
+      setPosts([...posts.sort((a,b) => a[sort].localeCompare(b[sort]))])
     }
 
     return (
@@ -31,7 +32,7 @@ function App() {
             <div>
                 <MySelect
                     value={selectedSort}
-                    onChange={sortPosts()}
+                    onChange={sortPosts}
                     defaultValue='Сортировка по'
                     options={[
                         {value:'title', name: 'По названию'},
