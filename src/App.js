@@ -1,4 +1,4 @@
-import React, {useEffect, useMemo, useState} from "react";
+import React, {useEffect, useState} from "react";
 
 import './App.css'
 import './components/posts/PostItem.jsx'
@@ -9,7 +9,8 @@ import PostFilter from "./components/postFilter/PostFilter";
 import MyModal from "./components/UI/myModal/MyModal";
 import MyButton from "./components/UI/button/MyButton";
 import {usePosts} from "./components/hooks/usePosts";
-import axios from "axios";
+import PostService from "./API/PostService";
+import Loader from "./components/UI/loader/Loader";
 
 
 function App() {
@@ -17,10 +18,11 @@ function App() {
     const [filter, setFilter] = useState({sort: '', query: ''})
     const [modal, setModal] = useState(false);
     const sortedAndSearchedPosts = usePosts(posts, filter.sort, filter.query);
+    const [isPostsLoading, setIsPostsLoading] = useState(false);
 
     useEffect(() => {
         fetchPosts()
-    },[])
+    }, [])
 
     const createPost = (newPost) => {
         setPosts([...posts, newPost]);
@@ -28,8 +30,12 @@ function App() {
     }
 
     async function fetchPosts() {
-        const response = await axios.get ('https://jsonplaceholder.typicode.com/posts')
-       setPosts(response.data)
+        setIsPostsLoading(true);
+        setTimeout(async ()=>{
+            const posts = await PostService.getAll();
+            setPosts(posts);
+            setIsPostsLoading(false);
+        },1000)
     }
 
     const removePost = (post) => {
@@ -38,7 +44,7 @@ function App() {
 
     return (
         <div className="App">
-            <button onClick={fetchPosts}>Get Posts</button>
+
             <MyButton style={{marginTop: 30}} onClick={() => setModal(true)}>
                 Создать пользователя
             </MyButton>
@@ -54,8 +60,11 @@ function App() {
                 filter={filter}
                 setFilter={setFilter}
             />
+            {isPostsLoading
+                ? <div style={{display: "flex", justifyContent: "center",marginTop:"50px"}}> <Loader/></div>
+                :<PostList remove={removePost} posts={sortedAndSearchedPosts} title='JS posts 1'/>
 
-            <PostList remove={removePost} posts={sortedAndSearchedPosts} title='JS posts 1'/>
+            }
 
         </div>
     );
