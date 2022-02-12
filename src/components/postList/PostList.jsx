@@ -23,11 +23,11 @@ const PostList = ({posts, title, remove}) => {
             <TransitionGroup>
                 {posts.map((post, index) =>
                     <CSSTransition
-                        key={post.id}
-                        timeout={500}
-                        className="post"
+                        key = {post.id}
+                        timeout = {500}
+                        className = "post"
                     >
-                        <PostItem remove={remove} number={index + 1} post={post}/>
+                        <PostItem remove = {remove} number = {index + 1} post = {post}/>
 
                     </CSSTransition>
                 )}
