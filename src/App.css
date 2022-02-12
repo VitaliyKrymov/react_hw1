@@ -36,6 +36,10 @@
     transform: translateX(-150px);
     transition: all 500ms ease-in;
 }
+.post__btn{
+    display: flex;
+
+}
 .page__wrapper {
     margin-top: 30px;
     display: flex;
